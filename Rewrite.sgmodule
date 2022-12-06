@@ -1,0 +1,117 @@
+#!name=lesong-𝐒𝐮𝐫𝐠𝐞𝐏𝐫𝐨 5 自用重写规则
+#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2022.12.06 10:30
+#!note= 去除了巨魔相已经具备的功能
+
+[Header Rewrite]
+# > 百度（全站替换为手机百度 Quark 的 User-Agent）
+http-request ^https?:\/\/(?!d\.pcs).*(?<!map)\.baidu\.com header-replace-regex User-Agent .+iPhone.+ "Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/16C50 Quark/604.1 T7/10.3 SearchCraft/2.6.3 (Baidu; P1 8.0.0)"
+
+# > Revenuecat
+https:\/\/api\.revenuecat\.com header-del x-revenuecat-etag
+
+[Rule]
+# > Safari 防跳转
+DOMAIN,app-site-association.cdn-apple.com,REJECT
+# > 屏蔽HTTP3/QUIC协议
+AND,((PROTOCOL,UDP), (DEST-PORT,443)),REJECT-NO-DROP
+# > 拒绝国家反诈中心请求
+DOMAIN-SUFFIX,gjfzpt.cn,REJECT
+# > VSCO 代理
+DOMAIN,measurement.com,全球加速
+# > 爱奇艺 去广告
+DOMAIN-SUFFIX,cupid.iqiyi.com,REJECT
+# > 优酷 去广告
+DOMAIN, iyes.youku.com,REJECT
+URL-REGEX,^http:\/\/.*\.cp31\.ott\.cibntv\.net\/youku\/,REJECT
+# > 交管12123 去广告
+URL-REGEX,^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery\/adver$,REJECT
+# > 京东 去广告
+URL-REGEX,^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=start$,REJECT
+# > 京东金融 去广告
+URL-REGEX,^https?:\/\/ms\.jr\.jd\.com\/gw\/generic\/aladdin\/(new)?na\/m\/getLoadingPicture,REJECT
+# > 滴滴出行 去广告
+//01 安全提示横幅
+URL-REGEX,^https:\/\/guard\.sec\.xiaojukeji\.com\/api\/guard\/psg\/v2\/getShieldStatus,REJECT
+//02 底部打车&代价推荐
+URL-REGEX,^https:\/\/conf\.diditaxi\.com\.cn\/one,REJECT
+//03 福利专区-金融服务-公交-骑车-滴滴乐园
+URL-REGEX,^https:\/\/conf\.diditaxi\.com\.cn\/nav\/widget,REJECT
+//04 接送机-优惠商城
+URL-REGEX,^https:\/\/api\.udache\.com\/gulfstream,REJECT
+//05 主页 领任务
+URL-REGEX,^https:\/\/conf\.diditaxi\.com\.cn\/api\/(component|fusion|dynamicmodule|usercenter),REJECT
+URL-REGEX,^https:\/\/conf\.diditaxi\.com\.cn\/dynamic,REJECT
+//06 主页 非主流式悬浮挂件
+URL-REGEX,^https:\/\/res\.xiaojukeji\.com\/resapi\/activity\/mget,REJECT
+//07 商城
+URL-REGEX,^https:\/\/shop-gw\.chengxinyouxuan\.com\/(route|indexConfig|apolloConfig|getShopTuanInfos),REJECT
+//08 开屏广告
+URL-REGEX,^https:\/\/img-ys011\.didistatic\.com\/static,REJECT
+//09 骑行
+URL-REGEX,^https:\/\/pt-starimg\.didistatic\.com\/static,REJECT
+# > 云闪付 去广告
+URL-REGEX,^https:\/\/wallet\.95516\.com\/s\/wl\/icon\/long,REJECT
+# > 向日葵 去广告
+DOMAIN,dm.toutiao.com,REJECT
+DOMAIN-KEYWORD,upload-cdn.orayimg.com,REJECT
+DOMAIN,ddns.oray.com,REJECT
+DOMAIN,sl-tk.oray.com,REJECT
+DOMAIN,client-api.oray.com,REJECT
+DOMAIN,push.oray.com,REJECT
+DOMAIN-SUFFIX,offline-adv.oray.com,REJECT
+DOMAIN-KEYWORD,upload-cdn.orayimg.com-upload-activity,REJECT
+# > 美团 去广告
+URL-REGEX,^https?:\/\/img\.meituan\.net\/(bizad|brandCpt)\/\w+\.(png|jpg),REJECT
+URL-REGEX,^https?:\/\/peisongapi\.meituan\.com\/client\/getInitiateImage,REJECT
+URL-REGEX,^https?:\/\/img\.meituan\.net\/(adunion|display|midas)\/\w+\.(gif|jpg|jpg\.webp)$,REJECT
+URL-REGEX,^https?:\/\/(s3plus|flowplus)\.meituan\.net\/v\d\/\w+\/linglong\/\w+\.(gif|jpg|mp4),REJECT
+URL-REGEX,^https?:\/\/p\d\.meituan\.net\/(bizad|wmbanner)\/\w+\.jpg,REJECT
+URL-REGEX,^https?:\/\/p\d\.meituan\.net\/movie\/\w+\.jpg\?may_covertWebp,REJECT
+
+[Script]
+# > Nicegram会员 restore-access.indream.app
+Nicegram会员 = type=http-request,pattern=^https?:\/\/restore-access\.indream\.app\/restoreAccess\?id=\w+$,requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/jnlaoshu/MySelf/main/Script/Nicegram.js,script-update-interval=0
+
+# > notability notability.com,
+notability = type=http-response ^https:\/\/notability\.com\/subscriptions script-path=https://raw.githubusercontent.com/PoetryU/Scientist/master/Scripts/notabilityvip.js, tag=notability,request-body=true
+
+# > VUE PRO会员 api.vuevideo.net,
+http-response https:\/\/api\.vuevideo\.net\/api\/v1\/(users\/.+\/profile|subtitle\/prepare) requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/VUE.js
+
+# > VSCO 会员解锁 vsco.co, api.revenuecat.com,
+http-response ^https:\/\/(api\.revenuecat\.com\/v\d\/subscribers|vsco\.co\/api\/subscriptions\/\d\.\d\/user-subscriptions)\/ requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/vsco.js
+Revenuecat = type=http-response,pattern=https:\/\/api\.revenuecat\.com,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/githubdulong/Script/master/revenuecat.js,script-update-interval=-1
+
+# > 百度搜索防跳转 App Store by app2smile
+百度搜索防跳转 = type=http-response,pattern=^https?\:\/\/boxer\.baidu\.com\/scheme,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/baidu-no-redirect.js
+
+# > 去除部分APP启动广告 by blackmatrix7
+去除部分APP启动广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=start,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/startup/startup.js
+
+# > 京东App 历史价格 api.m.jd.com,
+京东历史价格 = type=http-response,requires-body=1,pattern=^https?://api\.m\.jd\.com/client\.action\?functionId=(wareBusiness|serverConfig|basicConfig),script-path=https://raw.githubusercontent.com/jnlaoshu/MySelf/main/Script/JDPrice.js
+
+# > 酷我音乐VIP *.kuwo.cn, *.lrts.me
+酷我音乐=type=http-response,pattern=^https?:\/\/.*\.(kuwo|lrts)\.(cn|me)\/(a\.p|music\.pay|(vip\/(v2|enc)\/(theme|user\/vip))|(EcomResource|(Mobile)?Ad)Serv(er|ice)).*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/nameking77/Qx/main/rewrite/kw.js,script-update-interval=0
+
+# > 美团外卖去开屏广告 by blackmatrix7
+美团外卖去开屏广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/wmapi\.meituan\.com\/api\/v\d+\/loadInfo?,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/startup/startup.js
+
+# > 微博去广告
+微博去广告 = type=http-response,pattern=^https?://(sdk|wb)app\.uve\.weibo\.com(/interface/sdk/sdkad.php|/wbapplua/wbpullad.lua),requires-body=1,max-size=0,timeout=30,script-path=https://raw.githubusercontent.com/yichahucha/surge/master/wb_launch.js
+微博去广告 = type=http-response,pattern=^https?://m?api\.weibo\.c(n|om)/2/(statuses/(unread|extend|positives/get|(friends|video)(/|_)(mix)?timeline)|stories/(video_stream|home_list)|(groups|fangle)/timeline|profile/statuses|comments/build_comments|photo/recommend_list|service/picfeed|searchall|cardlist|page|!/photos/pic_recommend_status|video/tiny_stream_video_list|photo/info),requires-body=1,max-size=-1,timeout=30,script-path=https://raw.githubusercontent.com/yichahucha/surge/master/wb_ad.js
+
+# > 微信去广告
+http-response ^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/Wechat.js
+
+# > 微信去除公众号文章底部广告
+微信去除公众号文章底部广告 = type=http-request,pattern=^https://mp\.weixin\.qq\.com/mp/getappmsgad,timeout=30,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/Wechat.js
+
+# > 解除微信链接限制
+解除微信链接限制 = type=http-response,pattern=^https\:\/\/(weixin110\.qq|security.wechat)\.com\/cgi-bin\/mmspamsupport-bin\/newredirectconfirmcgi\?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/asset/UnblockURLinWeChat.js
+
+# > 微信自动阅读
+微信自动阅读 = type=http-response,pattern=^https?://mp\.weixin\.qq\.com/s.+?,requires-body=1,script-path=https://raw.githubusercontent.com/mieqq/mieqq/master/replace-body.js, argument="</script>->setTimeout(()=>window.history.back(),6000); </script>"
+
+[MITM]
+hostname =  %INSERT% gab.122.gov.cn, api.m.jd.com,ms.jr.jd.com, as.xiaojukeji.com, pt-starimg.didistatic.com, security.xiaojukeji.com, guard.sec.xiaojukeji.com, conf.diditaxi.com.cn, api.udache.com, res.xiaojukeji.com, shop-gw.chengxinyouxuan.com, img-ys011.didistatic.com, wallet.95516.com, api-access.pangolin-sdk-toutiao.com,dm.toutiao.com,*.oray.com,*.orayimg.com, *.meituan.net, *.meituan.com, restore-access.indream.app,notability.com,api.vuevideo.net,vsco.co, api.revenuecat.com, boxer.baidu.com, api.m.jd.com,*.kuwo.cn, *.lrts.me,wmapi.meituan.com,api.weibo.cn, mapi.weibo.com, *.uve.weibo.com, -*.weibo.com, mp.weixin.qq.com, security.wechat.com, weixin110.qq.com
