@@ -1,5 +1,5 @@
 #!name=lesong-𝐒𝐮𝐫𝐠𝐞𝐏𝐫𝐨 5 自用重写规则
-#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2023.1.10 11:32
+#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2023.1.10 11:35
 #!note= 去除了巨魔相已经具备的功能
 
 [Header Rewrite]
@@ -103,8 +103,12 @@ URL-REGEX,^https?:\/\/img\.meituan\.net\/(adunion|display|midas)\/\w+\.(gif|jpg|
 URL-REGEX,^https?:\/\/(s3plus|flowplus)\.meituan\.net\/v\d\/\w+\/linglong\/\w+\.(gif|jpg|mp4),REJECT
 URL-REGEX,^https?:\/\/p\d\.meituan\.net\/(bizad|wmbanner)\/\w+\.jpg,REJECT
 URL-REGEX,^https?:\/\/p\d\.meituan\.net\/movie\/\w+\.jpg\?may_covertWebp,REJECT
+# 屏蔽知乎网页登 static.zhihu.com
+URL-REGEX, ^https://static\.zhihu\.com/[^/]+/(main|column)\.signflow\.[^.]+.js, REJECT
 
 [Script]
+百度搜索防跳转 = type=http-response,pattern=^https?\:\/\/boxer\.baidu\.com\/scheme,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/baidu-no-redirect.js
+
 # > Nicegram会员 restore-access.indream.app
 Nicegram会员 = type=http-request,pattern=^https?:\/\/restore-access\.indream\.app\/restoreAccess\?id=\w+$,requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/jnlaoshu/MySelf/main/Script/Nicegram.js,script-update-interval=0
 
@@ -128,5 +132,12 @@ Revenuecat = type=http-response,pattern=https:\/\/api\.revenuecat\.com,requires-
 微博去广告 = type=http-response,pattern=^https?://(sdk|wb)app\.uve\.weibo\.com(/interface/sdk/sdkad.php|/wbapplua/wbpullad.lua),requires-body=1,max-size=0,timeout=30,script-path=https://raw.githubusercontent.com/yichahucha/surge/master/wb_launch.js
 微博去广告 = type=http-response,pattern=^https?://m?api\.weibo\.c(n|om)/2/(statuses/(unread|extend|positives/get|(friends|video)(/|_)(mix)?timeline)|stories/(video_stream|home_list)|(groups|fangle)/timeline|profile/statuses|comments/build_comments|photo/recommend_list|service/picfeed|searchall|cardlist|page|!/photos/pic_recommend_status|video/tiny_stream_video_list|photo/info),requires-body=1,max-size=-1,timeout=30,script-path=https://raw.githubusercontent.com/yichahucha/surge/master/wb_ad.js
 
+# > 小红书 去广告
+开屏广告 = type=http-response,pattern=^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/system_service\/splash_config,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chouchoui/QuanX/master/Scripts/xiaohongshu/xiaohongshu.ad.js,script-update-interval=0
+推荐广告 = type=http-response,pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v6\/homefeed\?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chouchoui/QuanX/master/Scripts/xiaohongshu/xiaohongshu.ad.js,script-update-interval=0
+
+# > 扫描全能王高级会员 ap*.intsig.net,
+扫描全能王高级会员 = requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/jnlaoshu/MySelf/master/Script/CamScanner.js,type=http-response,pattern=https:\/\/(api|api-cs)\.intsig\.net\/purchase\/cs\/query_property\?,script-update-interval=0
+
 [MITM]
-hostname = %APPEND% *.baidu.com, www.zhihu.com, acs.m.taobao.com, qde.qunar.com, h.trace.qq.com, heic.alicdn.com, xc.gdt.qq.com, lp.pinduoduo.com, lpcdn.pinduoduo.com, pgdt.gtimg.cn, img.meituan.net, wmapi.meituan.com, map-mobile-opnimg.cdn.bcebos.com, dss0.bdstatic.com, cjh-amis.cdn.bcebos.com, map-mobile-resources.cdn.bcebos.com, g.cn.miaozhen.com, m5.amap.com, sns.amap.com, cache.amap.com, ads.amap.com, gab.122.gov.cn, ms.jr.jd.com, as.xiaojukeji.com, pt-starimg.didistatic.com, security.xiaojukeji.com, guard.sec.xiaojukeji.com, conf.diditaxi.com.cn, api.udache.com, res.xiaojukeji.com, shop-gw.chengxinyouxuan.com, img-ys011.didistatic.com, wallet.95516.com, api-access.pangolin-sdk-toutiao.com, dm.toutiao.com, *.oray.com, *.orayimg.com, *.meituan.net, *.meituan.com, restore-access.indream.app, notability.com, api.vuevideo.net,vsco.co, api.revenuecat.com, api.m.jd.com, *.lrts.me, wmapi.meituan.com, api.weibo.cn, mapi.weibo.com, *.uve.weibo.com, -*.weibo.com
+hostname = %APPEND% edith.xiaohongshu.com, ap*.intsig.net, static.zhihu.com, boxer.baidu.com, *.baidu.com, www.zhihu.com, acs.m.taobao.com, qde.qunar.com, h.trace.qq.com, heic.alicdn.com, xc.gdt.qq.com, lp.pinduoduo.com, lpcdn.pinduoduo.com, pgdt.gtimg.cn, img.meituan.net, wmapi.meituan.com, map-mobile-opnimg.cdn.bcebos.com, dss0.bdstatic.com, cjh-amis.cdn.bcebos.com, map-mobile-resources.cdn.bcebos.com, g.cn.miaozhen.com, m5.amap.com, sns.amap.com, cache.amap.com, ads.amap.com, gab.122.gov.cn, ms.jr.jd.com, as.xiaojukeji.com, pt-starimg.didistatic.com, security.xiaojukeji.com, guard.sec.xiaojukeji.com, conf.diditaxi.com.cn, api.udache.com, res.xiaojukeji.com, shop-gw.chengxinyouxuan.com, img-ys011.didistatic.com, wallet.95516.com, api-access.pangolin-sdk-toutiao.com, dm.toutiao.com, *.oray.com, *.orayimg.com, *.meituan.net, *.meituan.com, restore-access.indream.app, notability.com, api.vuevideo.net,vsco.co, api.revenuecat.com, api.m.jd.com, *.lrts.me, wmapi.meituan.com, api.weibo.cn, mapi.weibo.com, *.uve.weibo.com, -*.weibo.com
