@@ -28,6 +28,20 @@ https:\/\/api\.revenuecat\.com header-del x-revenuecat-etag
 ^https?:\/\/img\.meituan\.net\/bizad\/.*.jpg - reject
 ^https?:\/\/wmapi\.meituan\.com\/api\/v7\/startpicture - reject
 
+# > QQ空间/QQ h.trace.qq.com, heic.alicdn.com, xc.gdt.qq.com, lp.pinduoduo.com, lpcdn.pinduoduo.com, pgdt.gtimg.cn
+^https?:\/\/h\.trace\.qq\.com\/ - reject
+^https?:\/\/heic\.alicdn\.com\/ - reject
+^https?:\/\/xc\.gdt\.qq\.com\/ - reject
+^https?:\/\/lp\.pinduoduo\.com\/ - reject
+^https?:\/\/lpcdn\.pinduoduo\.com\/ - reject
+^https?:\/\/pgdt\.gtimg\.cn\/ - reject
+
+# > 去哪网 qde.qunar.com
+^https:\/\/qde\.qunar\.com\/preload - reject
+
+# > 飞猪旅行acs.m.taobao.com
+^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.crm\.screen\.allresource\/ - reject
+
 [Rule]
 # > Safari 防跳转
 DOMAIN,app-site-association.cdn-apple.com,REJECT
@@ -115,4 +129,4 @@ Revenuecat = type=http-response,pattern=https:\/\/api\.revenuecat\.com,requires-
 微博去广告 = type=http-response,pattern=^https?://m?api\.weibo\.c(n|om)/2/(statuses/(unread|extend|positives/get|(friends|video)(/|_)(mix)?timeline)|stories/(video_stream|home_list)|(groups|fangle)/timeline|profile/statuses|comments/build_comments|photo/recommend_list|service/picfeed|searchall|cardlist|page|!/photos/pic_recommend_status|video/tiny_stream_video_list|photo/info),requires-body=1,max-size=-1,timeout=30,script-path=https://raw.githubusercontent.com/yichahucha/surge/master/wb_ad.js
 
 [MITM]
-hostname = %APPEND% img.meituan.net, wmapi.meituan.com, map-mobile-opnimg.cdn.bcebos.com, dss0.bdstatic.com, cjh-amis.cdn.bcebos.com, map-mobile-resources.cdn.bcebos.com, g.cn.miaozhen.com, m5.amap.com, sns.amap.com, cache.amap.com, ads.amap.com, gab.122.gov.cn, ms.jr.jd.com, as.xiaojukeji.com, pt-starimg.didistatic.com, security.xiaojukeji.com, guard.sec.xiaojukeji.com, conf.diditaxi.com.cn, api.udache.com, res.xiaojukeji.com, shop-gw.chengxinyouxuan.com, img-ys011.didistatic.com, wallet.95516.com, api-access.pangolin-sdk-toutiao.com, dm.toutiao.com, *.oray.com, *.orayimg.com, *.meituan.net, *.meituan.com, restore-access.indream.app, notability.com, api.vuevideo.net,vsco.co, api.revenuecat.com, boxer.baidu.com, api.m.jd.com, *.lrts.me, wmapi.meituan.com, api.weibo.cn, mapi.weibo.com, *.uve.weibo.com, -*.weibo.com
+hostname = %APPEND% acs.m.taobao.com, qde.qunar.com, h.trace.qq.com, heic.alicdn.com, xc.gdt.qq.com, lp.pinduoduo.com, lpcdn.pinduoduo.com, pgdt.gtimg.cn, img.meituan.net, wmapi.meituan.com, map-mobile-opnimg.cdn.bcebos.com, dss0.bdstatic.com, cjh-amis.cdn.bcebos.com, map-mobile-resources.cdn.bcebos.com, g.cn.miaozhen.com, m5.amap.com, sns.amap.com, cache.amap.com, ads.amap.com, gab.122.gov.cn, ms.jr.jd.com, as.xiaojukeji.com, pt-starimg.didistatic.com, security.xiaojukeji.com, guard.sec.xiaojukeji.com, conf.diditaxi.com.cn, api.udache.com, res.xiaojukeji.com, shop-gw.chengxinyouxuan.com, img-ys011.didistatic.com, wallet.95516.com, api-access.pangolin-sdk-toutiao.com, dm.toutiao.com, *.oray.com, *.orayimg.com, *.meituan.net, *.meituan.com, restore-access.indream.app, notability.com, api.vuevideo.net,vsco.co, api.revenuecat.com, boxer.baidu.com, api.m.jd.com, *.lrts.me, wmapi.meituan.com, api.weibo.cn, mapi.weibo.com, *.uve.weibo.com, -*.weibo.com
