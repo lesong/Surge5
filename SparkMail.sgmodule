@@ -1,0 +1,13 @@
+#!name=SparkMail 解锁高级版
+#!desc=需要时开启
+
+[URL Rewrite]
+# 屏蔽更新弹窗
+^https:\/\/2550505\.com\/version\/update - reject
+
+[Script]
+# SparkMail 解锁高级版
+http-response ^https?:\/\/api\.revenuecat\.com\/v1\/(receipts|subscribers\/.{36}|subscribers\/\w{14})$ requires-body=1,script-path=https://raw.githubusercontent.com/yqc007/QuantumultX/master/SparkMailProCrack.js
+
+[MITM]
+hostname = %INSERT% 2550505.com, api.revenuecat.com
