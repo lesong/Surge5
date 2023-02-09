@@ -1,5 +1,5 @@
 #!name=lesong-𝐒𝐮𝐫𝐠𝐞𝐏𝐫𝐨 5 自用重写规则
-#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2023.2.7 12:35
+#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2023.2.9 12:35
 #!note= 去除了巨魔相已经具备的功能
 
 [Header Rewrite]
@@ -97,9 +97,6 @@ URL-REGEX,^https?:\/\/p\d\.meituan\.net\/movie\/\w+\.jpg\?may_covertWebp,REJECT
 URL-REGEX, ^https://static\.zhihu\.com/[^/]+/(main|column)\.signflow\.[^.]+.js, REJECT
 
 [Script]
-# > Nicegram会员 restore-access.indream.app
-Nicegram会员 = type=http-request,pattern=^https?:\/\/restore-access\.indream\.app\/restoreAccess\?id=\w+$,requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/jnlaoshu/MySelf/main/Script/Nicegram.js,script-update-interval=0
-
 # > notability notability.com,
 notability = type=http-response ^https:\/\/notability\.com\/subscriptions script-path=https://raw.githubusercontent.com/PoetryU/Scientist/master/Scripts/notabilityvip.js, tag=notability,request-body=true
 
@@ -124,4 +121,4 @@ Revenuecat = type=http-response,pattern=https:\/\/api\.revenuecat\.com,requires-
 扫描全能王高级会员 = requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/jnlaoshu/MySelf/master/Script/CamScanner.js,type=http-response,pattern=https:\/\/(api|api-cs)\.intsig\.net\/purchase\/cs\/query_property\?,script-update-interval=0
 
 [MITM]
-hostname = %APPEND% edith.xiaohongshu.com, ap*.intsig.net, acs.m.taobao.com, qde.qunar.com, h.trace.qq.com, heic.alicdn.com, xc.gdt.qq.com, lp.pinduoduo.com, lpcdn.pinduoduo.com, pgdt.gtimg.cn, img.meituan.net, wmapi.meituan.com, map-mobile-opnimg.cdn.bcebos.com, dss0.bdstatic.com, cjh-amis.cdn.bcebos.com, map-mobile-resources.cdn.bcebos.com, g.cn.miaozhen.com, m5.amap.com, sns.amap.com, cache.amap.com, ads.amap.com, gab.122.gov.cn, ms.jr.jd.com, as.xiaojukeji.com, pt-starimg.didistatic.com, security.xiaojukeji.com, guard.sec.xiaojukeji.com, conf.diditaxi.com.cn, api.udache.com, res.xiaojukeji.com, shop-gw.chengxinyouxuan.com, img-ys011.didistatic.com, wallet.95516.com, api-access.pangolin-sdk-toutiao.com, dm.toutiao.com, *.oray.com, *.orayimg.com, *.meituan.net, *.meituan.com, restore-access.indream.app, notability.com, api.vuevideo.net,vsco.co, api.revenuecat.com, api.m.jd.com, *.lrts.me, wmapi.meituan.com
+hostname = %APPEND% edith.xiaohongshu.com, ap*.intsig.net, acs.m.taobao.com, qde.qunar.com, h.trace.qq.com, heic.alicdn.com, xc.gdt.qq.com, lp.pinduoduo.com, lpcdn.pinduoduo.com, pgdt.gtimg.cn, img.meituan.net, wmapi.meituan.com, map-mobile-opnimg.cdn.bcebos.com, dss0.bdstatic.com, cjh-amis.cdn.bcebos.com, map-mobile-resources.cdn.bcebos.com, g.cn.miaozhen.com, m5.amap.com, sns.amap.com, cache.amap.com, ads.amap.com, gab.122.gov.cn, ms.jr.jd.com, as.xiaojukeji.com, pt-starimg.didistatic.com, security.xiaojukeji.com, guard.sec.xiaojukeji.com, conf.diditaxi.com.cn, api.udache.com, res.xiaojukeji.com, shop-gw.chengxinyouxuan.com, img-ys011.didistatic.com, wallet.95516.com, api-access.pangolin-sdk-toutiao.com, dm.toutiao.com, *.oray.com, *.orayimg.com, *.meituan.net, *.meituan.com, notability.com, api.vuevideo.net,vsco.co, api.revenuecat.com, api.m.jd.com, *.lrts.me, wmapi.meituan.com
