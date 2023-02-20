@@ -80,5 +80,8 @@ Nicegram会员 = type=http-request,pattern=^https?:\/\/restore-access\.indream\.
 # > 扫描全能王高级会员 ap*.intsig.net,
 扫描全能王高级会员 = requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/jnlaoshu/MySelf/master/Script/CamScanner.js,type=http-response,pattern=https:\/\/(api|api-cs)\.intsig\.net\/purchase\/cs\/query_property\?,script-update-interval=0
 
+# > 避免 Google 搜索可能出现的人机验证 by NobyDa
+Google_CAPTCHA.js = type=http-response,pattern=^https:\/\/www\.google\.com(\.[a-z]+|)\/search\?q=,requires-body=1,debug=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Google_CAPTCHA.js,max-size=0,timeout=10,ability=http-client-policy,argument=^(🇸🇬|🇭🇰)\s.*\d+$
+
 [MITM]
-hostname = %APPEND% g.cn, www.g.cn, google.cn, www.google.cn, boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net, mbd.baidu.com, boxer.baidu.com, api.revenuecat.com, api.m.jd.com, restore-access.indream.app, ap*.intsig.net, wmapi.meituan.com
+hostname = %APPEND% g.cn, www.g.cn, google.cn, www.google.cn, boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net, mbd.baidu.com, boxer.baidu.com, api.revenuecat.com, api.m.jd.com, restore-access.indream.app, ap*.intsig.net, wmapi.meituan.com, www.google.com*
