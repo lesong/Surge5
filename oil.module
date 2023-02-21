@@ -1,7 +1,0 @@
-#!name=油价提醒
-#!desc=贵州油价（自行申请apikey更改省份）
-#!author=deezertidal
-#!icon= https://raw.githubusercontent.com/deezertidal/private/main/icons/lifeindex.png
-#!openUrl=https://github.com/deezertidal/private
-[Script]
-贵州油价提醒 = type=cron,script-path=https://raw.githubusercontent.com/lesong/Surge5/main/oil.js,cronexpr="9 9 9 * * ?",timeout=10,script-update-interval=0,enable=true
