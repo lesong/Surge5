@@ -20,24 +20,64 @@ http-request ^https?:\/\/(?!d\.pcs).*(?<!map)\.baidu\.com header-replace-regex U
 https:\/\/api\.revenuecat\.com header-del x-revenuecat-etag
 
 [Rule]
+# >> 顶级域名分流
+# 大陆顶级域
+DOMAIN-SUFFIX,cn,🌐 全球直连
+# 香港顶级域
+DOMAIN-SUFFIX,hk,🇭🇰 香港节点
+# 台湾顶级域
+DOMAIN-SUFFIX,tw,🇨🇳 台湾节点
+DOMAIN-SUFFIX,hinet.net,🇨🇳 台湾节点
+DOMAIN-SUFFIX,emome.net,🇨🇳 台湾节点
+DOMAIN-SUFFIX,litv.tv,🇨🇳 台湾节点
+DOMAIN-SUFFIX,linkedin.com,🇨🇳 台湾节点
+# 新加坡顶级域
+DOMAIN-SUFFIX,sg,🇸🇬 新加坡节点
+# 韩国顶级域
+DOMAIN-SUFFIX,kr,🇰🇷 韩国节点
+# 日本顶级域
+DOMAIN-SUFFIX,jp,🇯🇵 日本节点
+# 美国顶级域
+DOMAIN-SUFFIX,us,🇺🇲 美国节点
+DOMAIN,lb-rdv-steep.ubisoft.com,🇺🇲 美国节点
+DOMAIN,useast1-public-ubiservices.ubi.com,🇺🇲 美国节点
+DOMAIN,lens.l.google.com,🇺🇲 美国节点
+# 欧洲联盟顶级域
+DOMAIN-SUFFIX,eu,🇬🇧 英国节点
+# 西欧-英国 GBR 顶级域
+DOMAIN-SUFFIX,uk,🇬🇧 英国节点
+# 西欧-法国 FRA 顶级域
+DOMAIN-SUFFIX,fr,🇬🇧 英国节点
+# 中欧-德国 DEU 顶级域
+DOMAIN-SUFFIX,de,🇩🇪 德国节点
+# 欧洲-亚洲-俄罗斯 RUS 顶级域
+DOMAIN-SUFFIX,ru,🇬🇧 英国节点
+# 中欧-波兰 POL 顶级域
+DOMAIN-SUFFIX,pl,🇬🇧 英国节点
+# 西北-荷兰 NLD 顶级域
+DOMAIN-SUFFIX,nl,🇬🇧 英国节点
+# 西南-西班牙 ESP 顶级域
+DOMAIN-SUFFIX,es,🇬🇧 英国节点
+# 北欧-丹麦 DNK 顶级域
+DOMAIN-SUFFIX,dk,🇬🇧 英国节点
 # > 个人分流
-DOMAIN,ip-api.com,✍︎ 手动切换
+DOMAIN,ip-api.com,🚀 手动选择
 DOMAIN,raw.githubusercontent.com,Proxy
 DOMAIN-KEYWORD,github,Proxy
 DOMAIN-SUFFIX,sub.store,Proxy
-DOMAIN,wuqianma.top,DIRECT
+DOMAIN,wuqianma.top,🌐 全球直连
 DOMAIN-KEYWORD,akamai,Proxy
-DOMAIN,delivery238.akamai-cdn-content.com,✍︎ 手动切换
+DOMAIN,delivery238.akamai-cdn-content.com,🚀 手动选择
 DOMAIN,jaavnacsdw.com,REJECT
 DOMAIN,ausoafab.net,REJECT
-DOMAIN,one.ipic.lol,✍︎ 手动切换
-DOMAIN,bilibi.lol,✍︎ 手动切换
-DOMAIN-KEYWORD,picd232,JP
-DOMAIN,qpic.ws,DIRECT
+DOMAIN,one.ipic.lol,🚀 手动选择
+DOMAIN,bilibi.lol,🚀 手动选择
+DOMAIN-KEYWORD,picd232,🇯🇵 日本节点
+DOMAIN,qpic.ws,🌐 全球直连
 # > ChatGPT 代理 
-DOMAIN-SUFFIX, openai.com,SG
-DOMAIN, cdn.auth0.com,SG
-DOMAIN, openaiapi-site.azureedge.net,SG
+DOMAIN-SUFFIX, openai.com,🇸🇬 新加坡节点
+DOMAIN, cdn.auth0.com,🇸🇬 新加坡节点
+DOMAIN, openaiapi-site.azureedge.net,🇸🇬 新加坡节点
 # > Safari 防跳转
 DOMAIN,app-site-association.cdn-apple.com,REJECT
 # > 屏蔽HTTP3/QUIC协议
@@ -53,22 +93,39 @@ DOMAIN,ocsp.apple.com,Reject
 # iQZone 代理
 DOMAIN,uuu.glass,Proxy
 # BT
-DOMAIN-SUFFIX,smtp,DIRECT
-DOMAIN-KEYWORD,aria2,DIRECT
-DOMAIN-KEYWORD,announce,DIRECT
-DOMAIN-KEYWORD,torrent,DIRECT
-DOMAIN-KEYWORD,tracker,DIRECT
-URL-REGEX,(Subject|HELO|SMTP),DIRECT
-URL-REGEX,(api|ps|sv|offnavi|newvector|ulog.imap|newloc)(.map|).(baidu|n.shifen).com,DIRECT
+DOMAIN-SUFFIX,smtp,🌐 全球直连
+DOMAIN-KEYWORD,aria2,🌐 全球直连
+DOMAIN-KEYWORD,announce,🌐 全球直连
+DOMAIN-KEYWORD,torrent,🌐 全球直连
+DOMAIN-KEYWORD,tracker,🌐 全球直连
+URL-REGEX,(Subject|HELO|SMTP),🌐 全球直连
+URL-REGEX,(api|ps|sv|offnavi|newvector|ulog.imap|newloc)(.map|).(baidu|n.shifen).com,🌐 全球直连
 # 迅雷
-URL-REGEX,(.?)(xunlei|sandai|Thunder|XLLiveUD)(.),DIRECT
-DOMAIN-SUFFIX,xunlei.com,DIRECT
-PROCESS-NAME,DownloadService,DIRECT
-PROCESS-NAME,Weiyun,DIRECT
-PROCESS-NAME,baidunetdisk,DIRECT
-URL-REGEX,(api|ps|sv|offnavi|newvector|ulog\.imap|newloc)(\.map|)\.(baidu|n\.shifen)\.com,DIRECT
+URL-REGEX,(.?)(xunlei|sandai|Thunder|XLLiveUD)(.),🌐 全球直连
+DOMAIN-SUFFIX,xunlei.com,🌐 全球直连
+PROCESS-NAME,DownloadService,🌐 全球直连
+PROCESS-NAME,Weiyun,🌐 全球直连
+PROCESS-NAME,baidunetdisk,🌐 全球直连
+URL-REGEX,(api|ps|sv|offnavi|newvector|ulog\.imap|newloc)(\.map|)\.(baidu|n\.shifen)\.com,🌐 全球直连
+# >> UItra Mobile
+DOMAIN-SUFFIX,analytics.amplitude.com,🇺🇲 美国节点
+DOMAIN-SUFFIX,api.amplitude.com,🇺🇲 美国节点
+DOMAIN-SUFFIX,api2.amplitude.com,🇺🇲 美国节点
+DOMAIN-SUFFIX,cdn.amplitude.com,🇺🇲 美国节点
+DOMAIN-SUFFIX,info.amplitude.com,🇺🇲 美国节点
+DOMAIN-SUFFIX,regionconfig.amplitude.com,🇺🇲 美国节点
+DOMAIN-SUFFIX,static.amplitude.com,🇺🇲 美国节点
+DOMAIN-SUFFIX,launchdarkly.com,🇺🇲 美国节点
+DOMAIN-SUFFIX,ultramobile.com,🇺🇲 美国节点
+DOMAIN-KEYWORD,ultramobile.com,🇺🇲 美国节点
+# >> target
+DOMAIN-SUFFIX,target.com,🇺🇲 美国节点
+DOMAIN-SUFFIX,carnivalmobile.com,🇺🇲 美国节点
+DOMAIN-KEYWORD,target,🇺🇲 美国节点
+# >> bestbuy
+DOMAIN-KEYWORD,bestbuy,🇺🇲 美国节点
+DOMAIN,pisces.bbystatic.com,🇺🇲 美国节点
 
-[Host]
 
 [URL Rewrite]
 # 将 google.cn 的请求重定向到 google.com
@@ -79,7 +136,7 @@ URL-REGEX,(api|ps|sv|offnavi|newvector|ulog\.imap|newloc)(\.map|)\.(baidu|n\.shi
 Rewrite: BoxJs = type=http-request,pattern=^https?:\/\/(.+\.)?boxjs\.(com|net),script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/box/chavy.boxjs.js, requires-body=true, timeout=120
 
 # > 百度搜索防跳转 App Store by app2smile
-百度搜索防跳转 = type=http-response,pattern=^https?\:\/\/boxer\.baidu\.com\/scheme,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/baidu-no-redirect.js
+百度搜索防跳转 = type=http-response,pattern=^https?\:\/\/boxer\.baidu\.com\/scheme,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/baidu-no-re🌐 全球直连.js
 
 # > 判断网络是否能够连接谷歌，如果不能则自动切换代理
 #proxy_auto_switch = type=event,event-name=network-changed,timeout=10,debug=1,script-path=https://raw.githubusercontent.com/shinyypig/Surge-Scripts/main/scripts/proxy_auto_switch.js
