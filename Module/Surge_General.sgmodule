@@ -136,7 +136,7 @@ DOMAIN,pisces.bbystatic.com,🇺🇲 美国节点
 Rewrite: BoxJs = type=http-request,pattern=^https?:\/\/(.+\.)?boxjs\.(com|net),script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/box/chavy.boxjs.js, requires-body=true, timeout=120
 
 # > 百度搜索防跳转 App Store by app2smile
-百度搜索防跳转 = type=http-response,pattern=^https?\:\/\/boxer\.baidu\.com\/scheme,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/baidu-no-re🌐 全球直连.js
+百度搜索防跳转 = type=http-response,pattern=^https?\:\/\/boxer\.baidu\.com\/scheme,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/baidu-no-redirect.js
 
 # > 判断网络是否能够连接谷歌，如果不能则自动切换代理
 #proxy_auto_switch = type=event,event-name=network-changed,timeout=10,debug=1,script-path=https://raw.githubusercontent.com/shinyypig/Surge-Scripts/main/scripts/proxy_auto_switch.js
