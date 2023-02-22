@@ -1,5 +1,5 @@
 #!name=lesong@𝐒𝐮𝐫𝐠𝐞𝐏𝐫𝐨 𝐒𝐜𝐫𝐢𝐩𝐭合集
-#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2023.02.22
+#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2023.02.23
 # > 花样字体生成： https://qwerty.dev/fancy-font-generator/
 # > 机场转义𝐄𝐍𝐂𝐎𝐃𝐄： https://www.urlencoder.org
 
@@ -60,14 +60,13 @@ DOMAIN-SUFFIX,nl,🇬🇧 英国节点
 DOMAIN-SUFFIX,es,🇬🇧 英国节点
 # 北欧-丹麦 DNK 顶级域
 DOMAIN-SUFFIX,dk,🇬🇧 英国节点
-# > 人工智能
+# > 人工智能ChatGPT
 DOMAIN-SUFFIX,openai.com,🇺🇲 美国节点
 DOMAIN-SUFFIX,chat.openai.com,🇺🇲 美国节点
 DOMAIN-SUFFIX,challenges.cloudflare.com,🇺🇲 美国节点
 DOMAIN-SUFFIX,chat.openai.com,🇺🇲 美国节点
 DOMAIN-SUFFIX,auth0.openai.com,🇺🇲 美国节点
 DOMAIN-SUFFIX,ai.com,🇺🇲 美国节点
-DOMAIN-SUFFIX,openai.com,🇺🇲 美国节点
 DOMAIN-SUFFIX,bing.com,🇺🇲 美国节点
 DOMAIN-SUFFIX,auth0.com,🇺🇲 美国节点
 DOMAIN-SUFFIX,sentry.io,🇺🇲 美国节点
@@ -78,6 +77,8 @@ DOMAIN-SUFFIX,gvt2.com,🇺🇲 美国节点
 DOMAIN-SUFFIX,gvt1.com,🇺🇲 美国节点
 DOMAIN-SUFFIX,gvt3.com,🇺🇲 美国节点
 DOMAIN-SUFFIX,cloudflare.com,🇺🇲 美国节点
+DOMAIN,cdn.auth0.com,🇺🇲 美国节点
+DOMAIN,openaiapi-site.azureedge.net,🇺🇲 美国节点
 # > 个人分流
 DOMAIN,ip-api.com,🚀 手动选择
 DOMAIN,raw.githubusercontent.com,Proxy
@@ -92,10 +93,6 @@ DOMAIN,one.ipic.lol,🚀 手动选择
 DOMAIN,bilibi.lol,🚀 手动选择
 DOMAIN-KEYWORD,picd232,🇯🇵 日本节点
 DOMAIN,qpic.ws,🌐 全球直连
-# > ChatGPT 代理 
-DOMAIN-SUFFIX, openai.com,🇸🇬 新加坡节点
-DOMAIN, cdn.auth0.com,🇸🇬 新加坡节点
-DOMAIN, openaiapi-site.azureedge.net,🇸🇬 新加坡节点
 # > Safari 防跳转
 DOMAIN,app-site-association.cdn-apple.com,REJECT
 # > 屏蔽HTTP3/QUIC协议
@@ -143,7 +140,8 @@ DOMAIN-KEYWORD,target,🇺🇲 美国节点
 # >> bestbuy
 DOMAIN-KEYWORD,bestbuy,🇺🇲 美国节点
 DOMAIN,pisces.bbystatic.com,🇺🇲 美国节点
-
+# >> 贴吧净化
+RULE-SET,https://raw.githubusercontent.com/app2smile/rules/master/rule/tieba-ad.list,REJECT-DROP
 
 [URL Rewrite]
 # 将 google.cn 的请求重定向到 google.com
@@ -155,6 +153,10 @@ Rewrite: BoxJs = type=http-request,pattern=^https?:\/\/(.+\.)?boxjs\.(com|net),s
 
 # > 百度搜索防跳转 App Store by app2smile
 百度搜索防跳转 = type=http-response,pattern=^https?\:\/\/boxer\.baidu\.com\/scheme,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/baidu-no-redirect.js
+
+# > 百度贴吧
+贴吧净化 = type=http-response,pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/(tiebaads\/commonbatch|c\/s\/sync),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js,script-update-interval=0
+贴吧Proto = type=http-response,pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized),requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-proto.js,script-update-interval=0
 
 # > 判断网络是否能够连接谷歌，如果不能则自动切换代理
 #proxy_auto_switch = type=event,event-name=network-changed,timeout=10,debug=1,script-path=https://raw.githubusercontent.com/shinyypig/Surge-Scripts/main/scripts/proxy_auto_switch.js
@@ -175,4 +177,4 @@ Nicegram会员 = type=http-request,pattern=^https?:\/\/restore-access\.indream\.
 Google_CAPTCHA.js = type=http-response,pattern=^https:\/\/www\.google\.com(\.[a-z]+|)\/search\?q=,requires-body=1,debug=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Google_CAPTCHA.js,max-size=0,timeout=10,ability=http-client-policy,argument=^(🇸🇬|🇭🇰)\s.*\d+$
 
 [MITM]
-hostname = %APPEND% g.cn, www.g.cn, google.cn, www.google.cn, boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net, mbd.baidu.com, boxer.baidu.com, api.revenuecat.com, api.m.jd.com, restore-access.indream.app, ap*.intsig.net, wmapi.meituan.com, www.google.com*
+hostname = %APPEND% g.cn, www.g.cn, google.cn, www.google.cn, boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net, mbd.baidu.com, boxer.baidu.com, api.revenuecat.com, api.m.jd.com, restore-access.indream.app, ap*.intsig.net, wmapi.meituan.com, www.google.com*, tiebac.baidu.com
