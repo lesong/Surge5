@@ -1,5 +1,5 @@
 #!name=lesong@𝐒𝐮𝐫𝐠𝐞𝐏𝐫𝐨 Pans面板合集
-#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2023.02.20
+#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2023.02.23
 
 [Panel]
 节假提醒 = script-name=节假提醒,update-interval=600
@@ -14,7 +14,7 @@
 
 
 [Script]
-节假提醒 = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/lesong/Surge5/main/JavaScript/Timecard.js
+节假提醒 = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/lesong/Surge5/main/JavaScript/Timecard2023.js
 
 今日黄历 = type=generic,script-path=https://raw.githubusercontent.com/zqzess/rule_for_quantumultX/master/js/Mine/wnCalendar/wnCalendar.js,timeout=10
 
