@@ -22,7 +22,7 @@ https:\/\/api\.revenuecat\.com header-del x-revenuecat-etag
 [Rule]
 # >> 顶级域名分流
 # 大陆顶级域
-DOMAIN-SUFFIX,cn,🌐 全球直连
+DOMAIN-SUFFIX,cn,Direct
 # 香港顶级域
 DOMAIN-SUFFIX,hk,🇭🇰 香港节点
 # 台湾顶级域
@@ -42,24 +42,6 @@ DOMAIN-SUFFIX,us,🇺🇲 美国节点
 DOMAIN,lb-rdv-steep.ubisoft.com,🇺🇲 美国节点
 DOMAIN,useast1-public-ubiservices.ubi.com,🇺🇲 美国节点
 DOMAIN,lens.l.google.com,🇺🇲 美国节点
-# 欧洲联盟顶级域
-DOMAIN-SUFFIX,eu,🇬🇧 英国节点
-# 西欧-英国 GBR 顶级域
-DOMAIN-SUFFIX,uk,🇬🇧 英国节点
-# 西欧-法国 FRA 顶级域
-DOMAIN-SUFFIX,fr,🇬🇧 英国节点
-# 中欧-德国 DEU 顶级域
-DOMAIN-SUFFIX,de,🇩🇪 德国节点
-# 欧洲-亚洲-俄罗斯 RUS 顶级域
-DOMAIN-SUFFIX,ru,🇬🇧 英国节点
-# 中欧-波兰 POL 顶级域
-DOMAIN-SUFFIX,pl,🇬🇧 英国节点
-# 西北-荷兰 NLD 顶级域
-DOMAIN-SUFFIX,nl,🇬🇧 英国节点
-# 西南-西班牙 ESP 顶级域
-DOMAIN-SUFFIX,es,🇬🇧 英国节点
-# 北欧-丹麦 DNK 顶级域
-DOMAIN-SUFFIX,dk,🇬🇧 英国节点
 # > 人工智能ChatGPT
 DOMAIN-SUFFIX,openai.com,🇺🇲 美国节点
 DOMAIN-SUFFIX,chat.openai.com,🇺🇲 美国节点
@@ -80,19 +62,19 @@ DOMAIN-SUFFIX,cloudflare.com,🇺🇲 美国节点
 DOMAIN,cdn.auth0.com,🇺🇲 美国节点
 DOMAIN,openaiapi-site.azureedge.net,🇺🇲 美国节点
 # > 个人分流
-DOMAIN,ip-api.com,🚀 手动选择
+DOMAIN,ip-api.com,✈️ 节点选择
 DOMAIN,raw.githubusercontent.com,Proxy
 DOMAIN-KEYWORD,github,Proxy
 DOMAIN-SUFFIX,sub.store,Proxy
-DOMAIN,wuqianma.top,🌐 全球直连
+DOMAIN,wuqianma.top,Direct
 DOMAIN-KEYWORD,akamai,Proxy
-DOMAIN,delivery238.akamai-cdn-content.com,🚀 手动选择
+DOMAIN,delivery238.akamai-cdn-content.com,✈️ 节点选择
 DOMAIN,jaavnacsdw.com,REJECT
 DOMAIN,ausoafab.net,REJECT
-DOMAIN,one.ipic.lol,🚀 手动选择
-DOMAIN,bilibi.lol,🚀 手动选择
+DOMAIN,one.ipic.lol,✈️ 节点选择
+DOMAIN,bilibi.lol,✈️ 节点选择
 DOMAIN-KEYWORD,picd232,🇯🇵 日本节点
-DOMAIN,qpic.ws,🌐 全球直连
+DOMAIN,qpic.ws,Direct
 # > Safari 防跳转
 DOMAIN,app-site-association.cdn-apple.com,REJECT
 # > 屏蔽HTTP3/QUIC协议
@@ -108,20 +90,20 @@ DOMAIN,ocsp.apple.com,Reject
 # iQZone 代理
 DOMAIN,uuu.glass,Proxy
 # BT
-DOMAIN-SUFFIX,smtp,🌐 全球直连
-DOMAIN-KEYWORD,aria2,🌐 全球直连
-DOMAIN-KEYWORD,announce,🌐 全球直连
-DOMAIN-KEYWORD,torrent,🌐 全球直连
-DOMAIN-KEYWORD,tracker,🌐 全球直连
-URL-REGEX,(Subject|HELO|SMTP),🌐 全球直连
-URL-REGEX,(api|ps|sv|offnavi|newvector|ulog.imap|newloc)(.map|).(baidu|n.shifen).com,🌐 全球直连
+DOMAIN-SUFFIX,smtp,Direct
+DOMAIN-KEYWORD,aria2,Direct
+DOMAIN-KEYWORD,announce,Direct
+DOMAIN-KEYWORD,torrent,Direct
+DOMAIN-KEYWORD,tracker,Direct
+URL-REGEX,(Subject|HELO|SMTP),Direct
+URL-REGEX,(api|ps|sv|offnavi|newvector|ulog.imap|newloc)(.map|).(baidu|n.shifen).com,Direct
 # 迅雷
-URL-REGEX,(.?)(xunlei|sandai|Thunder|XLLiveUD)(.),🌐 全球直连
-DOMAIN-SUFFIX,xunlei.com,🌐 全球直连
-PROCESS-NAME,DownloadService,🌐 全球直连
-PROCESS-NAME,Weiyun,🌐 全球直连
-PROCESS-NAME,baidunetdisk,🌐 全球直连
-URL-REGEX,(api|ps|sv|offnavi|newvector|ulog\.imap|newloc)(\.map|)\.(baidu|n\.shifen)\.com,🌐 全球直连
+URL-REGEX,(.?)(xunlei|sandai|Thunder|XLLiveUD)(.),Direct
+DOMAIN-SUFFIX,xunlei.com,Direct
+PROCESS-NAME,DownloadService,Direct
+PROCESS-NAME,Weiyun,Direct
+PROCESS-NAME,baidunetdisk,Direct
+URL-REGEX,(api|ps|sv|offnavi|newvector|ulog\.imap|newloc)(\.map|)\.(baidu|n\.shifen)\.com,Direct
 # >> UItra Mobile
 DOMAIN-SUFFIX,analytics.amplitude.com,🇺🇲 美国节点
 DOMAIN-SUFFIX,api.amplitude.com,🇺🇲 美国节点
