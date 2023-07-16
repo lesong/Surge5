@@ -10,7 +10,7 @@ force-http-engine-hosts = %APPEND% boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.ne
 # yunbusiness.ccb.com：建行生活
 # www.abchina.com.cn：中国农业银行
 # login-service.mobile-bank.psbc.com,mobile-bank.psbc.com：中国邮政储蓄银行
-skip-proxy = %APPEND% www.baidu.com,yunbusiness.ccb.com,www.abchina.com.cn,login-service.mobile-bank.psbc.com,mobile-bank.psbc.com
+# skip-proxy = %APPEND% www.baidu.com,yunbusiness.ccb.com,www.abchina.com.cn,login-service.mobile-bank.psbc.com,mobile-bank.psbc.com
 
 [Header Rewrite]
 # > 百度（全站替换为手机百度 Quark 的 User-Agent）
@@ -22,7 +22,7 @@ https:\/\/api\.revenuecat\.com header-del x-revenuecat-etag
 [Rule]
 # >> 顶级域名分流
 # 大陆顶级域
-DOMAIN-SUFFIX,cn,Direct
+# DOMAIN-SUFFIX,cn,Direct
 # 香港顶级域
 DOMAIN-SUFFIX,hk,🇭🇰 香港节点
 # 台湾顶级域
