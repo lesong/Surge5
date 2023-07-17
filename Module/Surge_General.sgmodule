@@ -93,7 +93,6 @@ DOMAIN,uuu.glass,🚀 延迟最低
 DOMAIN-SUFFIX,smtp,Direct
 DOMAIN-KEYWORD,aria2,Direct
 DOMAIN-KEYWORD,announce,Direct
-DOMAIN-KEYWORD,torrent,Direct
 DOMAIN-KEYWORD,tracker,Direct
 URL-REGEX,(Subject|HELO|SMTP),Direct
 URL-REGEX,(api|ps|sv|offnavi|newvector|ulog.imap|newloc)(.map|).(baidu|n.shifen).com,Direct
