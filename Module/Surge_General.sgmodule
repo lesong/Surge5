@@ -1,5 +1,5 @@
 #!name=lesong@𝐒𝐮𝐫𝐠𝐞𝐏𝐫𝐨 𝐒𝐜𝐫𝐢𝐩𝐭合集
-#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2023.08.12
+#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2023.08.13
 # > 花样字体生成： https://qwerty.dev/fancy-font-generator/
 # > 机场转义𝐄𝐍𝐂𝐎𝐃𝐄： https://www.urlencoder.org
 
@@ -116,5 +116,4 @@ Rewrite: BoxJs = type=http-request,pattern=^https?:\/\/(.+\.)?boxjs\.(com|net),s
 Google_CAPTCHA.js = type=http-response,pattern=^https:\/\/www\.google\.com(\.[a-z]+|)\/search\?q=,requires-body=1,debug=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Google_CAPTCHA.js,max-size=0,timeout=10,ability=http-client-policy,argument=^(🇸🇬|🇭🇰)\s.*\d+$
 
 [MITM]
-hostname = %APPEND% g.cn, www.g.cn, google.cn, www.google.cn, boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net, mbd.baidu.com, boxer.baidu.com, wmapi.meituan.com, www.google.com*
-, api.revenuecat.com
+hostname = %APPEND% g.cn, www.g.cn, google.cn, www.google.cn, boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net, mbd.baidu.com, boxer.baidu.com, wmapi.meituan.com, www.google.com*, api.revenuecat.com
