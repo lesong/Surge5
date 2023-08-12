@@ -1,5 +1,5 @@
 #!name=lesong@𝐒𝐮𝐫𝐠𝐞𝐏𝐫𝐨 𝐒𝐜𝐫𝐢𝐩𝐭合集
-#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2023.06.09
+#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2023.08.09
 # > 花样字体生成： https://qwerty.dev/fancy-font-generator/
 # > 机场转义𝐄𝐍𝐂𝐎𝐃𝐄： https://www.urlencoder.org
 
@@ -42,25 +42,6 @@ DOMAIN-SUFFIX,us,🇺🇲 美国节点
 DOMAIN,lb-rdv-steep.ubisoft.com,🇺🇲 美国节点
 DOMAIN,useast1-public-ubiservices.ubi.com,🇺🇲 美国节点
 DOMAIN,lens.l.google.com,🇺🇲 美国节点
-# > 人工智能ChatGPT
-DOMAIN-SUFFIX,openai.com,🇺🇲 美国节点
-DOMAIN-SUFFIX,chat.openai.com,🇺🇲 美国节点
-DOMAIN-SUFFIX,challenges.cloudflare.com,🇺🇲 美国节点
-DOMAIN-SUFFIX,chat.openai.com,🇺🇲 美国节点
-DOMAIN-SUFFIX,auth0.openai.com,🇺🇲 美国节点
-DOMAIN-SUFFIX,ai.com,🇺🇲 美国节点
-DOMAIN-SUFFIX,bing.com,🇺🇲 美国节点
-DOMAIN-SUFFIX,auth0.com,🇺🇲 美国节点
-DOMAIN-SUFFIX,sentry.io,🇺🇲 美国节点
-DOMAIN-SUFFIX,hcaptcha.com,🇺🇲 美国节点
-DOMAIN-SUFFIX,recaptcha.net,🇺🇲 美国节点
-DOMAIN-SUFFIX,gstatic.com,🇺🇲 美国节点
-DOMAIN-SUFFIX,gvt2.com,🇺🇲 美国节点
-DOMAIN-SUFFIX,gvt1.com,🇺🇲 美国节点
-DOMAIN-SUFFIX,gvt3.com,🇺🇲 美国节点
-DOMAIN-SUFFIX,cloudflare.com,🇺🇲 美国节点
-DOMAIN,cdn.auth0.com,🇺🇲 美国节点
-DOMAIN,openaiapi-site.azureedge.net,🇺🇲 美国节点
 # > 个人分流
 DOMAIN,ip-api.com,✈️ 节点选择
 DOMAIN,raw.githubusercontent.com,🚀 延迟最低
