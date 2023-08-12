@@ -1,5 +1,5 @@
 #!name=lesong@𝐒𝐮𝐫𝐠𝐞𝐏𝐫𝐨 𝐒𝐜𝐫𝐢𝐩𝐭合集
-#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2023.08.09
+#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2023.08.12
 # > 花样字体生成： https://qwerty.dev/fancy-font-generator/
 # > 机场转义𝐄𝐍𝐂𝐎𝐃𝐄： https://www.urlencoder.org
 
@@ -43,19 +43,9 @@ DOMAIN,lb-rdv-steep.ubisoft.com,🇺🇲 美国节点
 DOMAIN,useast1-public-ubiservices.ubi.com,🇺🇲 美国节点
 DOMAIN,lens.l.google.com,🇺🇲 美国节点
 # > 个人分流
-DOMAIN,ip-api.com,✈️ 节点选择
-DOMAIN,raw.githubusercontent.com,🚀 延迟最低
-DOMAIN-KEYWORD,github,🚀 延迟最低
-DOMAIN-SUFFIX,sub.store,🚀 延迟最低
-DOMAIN,wuqianma.top,Direct
-DOMAIN-KEYWORD,akamai,🚀 延迟最低
-DOMAIN,delivery238.akamai-cdn-content.com,✈️ 节点选择
-DOMAIN,jaavnacsdw.com,REJECT
-DOMAIN,ausoafab.net,REJECT
-DOMAIN,one.ipic.lol,✈️ 节点选择
-DOMAIN,bilibi.lol,✈️ 节点选择
-DOMAIN-KEYWORD,picd232,🇯🇵 日本节点
-DOMAIN,qpic.ws,Direct
+DOMAIN,raw.githubusercontent.com,美国1年ss
+DOMAIN-KEYWORD,github,美国1年ss
+DOMAIN-SUFFIX,sub.store,美国1年ss
 # > Safari 防跳转
 DOMAIN,app-site-association.cdn-apple.com,REJECT
 # > 屏蔽HTTP3/QUIC协议
@@ -116,27 +106,15 @@ Rewrite: BoxJs = type=http-request,pattern=^https?:\/\/(.+\.)?boxjs\.(com|net),s
 # > 百度搜索防跳转 App Store by app2smile
 百度搜索防跳转 = type=http-response,pattern=^https?\:\/\/boxer\.baidu\.com\/scheme,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/baidu-no-redirect.js
 
-# > 百度贴吧
-贴吧净化 = type=http-response,pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/(tiebaads\/commonbatch|c\/s\/sync),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js,script-update-interval=0
-贴吧Proto = type=http-response,pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized),requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-proto.js,script-update-interval=0
-
 # > 判断网络是否能够连接谷歌，如果不能则自动切换代理
 #proxy_auto_switch = type=event,event-name=network-changed,timeout=10,debug=1,script-path=https://raw.githubusercontent.com/shinyypig/Surge-Scripts/main/scripts/proxy_auto_switch.js
 
-# > 京东App 历史价格 api.m.jd.com,
-京东历史价格 = type=http-response,requires-body=1,pattern=^https?://api\.m\.jd\.com/client\.action\?functionId=(wareBusiness|serverConfig|basicConfig),script-path=https://raw.githubusercontent.com/jnlaoshu/MySelf/main/Script/JDPrice.js
-
-# > Nicegram会员 restore-access.indream.app
-Nicegram会员 = type=http-request,pattern=^https?:\/\/restore-access\.indream\.app\/restoreAccess\?id=\w+$,requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/jnlaoshu/MySelf/main/Script/Nicegram.js,script-update-interval=0
-
 # > 美团外卖去开屏广告 by blackmatrix7
 美团外卖去开屏广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/wmapi\.meituan\.com\/api\/v\d+\/loadInfo?,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/startup/startup.js
-
-# > 扫描全能王高级会员 ap*.intsig.net,
-扫描全能王高级会员 = requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/jnlaoshu/MySelf/master/Script/CamScanner.js,type=http-response,pattern=https:\/\/(api|api-cs)\.intsig\.net\/purchase\/cs\/query_property\?,script-update-interval=0
 
 # > 避免 Google 搜索可能出现的人机验证 by NobyDa
 Google_CAPTCHA.js = type=http-response,pattern=^https:\/\/www\.google\.com(\.[a-z]+|)\/search\?q=,requires-body=1,debug=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Google_CAPTCHA.js,max-size=0,timeout=10,ability=http-client-policy,argument=^(🇸🇬|🇭🇰)\s.*\d+$
 
 [MITM]
-hostname = %APPEND% g.cn, www.g.cn, google.cn, www.google.cn, boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net, mbd.baidu.com, boxer.baidu.com, api.revenuecat.com, api.m.jd.com, restore-access.indream.app, ap*.intsig.net, wmapi.meituan.com, www.google.com*, tiebac.baidu.com
+hostname = %APPEND% g.cn, www.g.cn, google.cn, www.google.cn, boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net, mbd.baidu.com, boxer.baidu.com, wmapi.meituan.com, www.google.com*
+, api.revenuecat.com
