@@ -10,7 +10,7 @@ force-http-engine-hosts = %APPEND% boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.ne
 # yunbusiness.ccb.com：建行生活
 # www.abchina.com.cn：中国农业银行
 # login-service.mobile-bank.psbc.com,mobile-bank.psbc.com：中国邮政储蓄银行
-# skip-proxy = %APPEND% www.baidu.com,yunbusiness.ccb.com,www.abchina.com.cn,login-service.mobile-bank.psbc.com,mobile-bank.psbc.com
+skip-proxy = %APPEND% www.baidu.com,yunbusiness.ccb.com,www.abchina.com.cn,login-service.mobile-bank.psbc.com,mobile-bank.psbc.com
 
 [Header Rewrite]
 # > 百度（全站替换为手机百度 Quark 的 User-Agent）
@@ -42,10 +42,6 @@ DOMAIN-SUFFIX,us,🇺🇲 美国节点
 DOMAIN,lb-rdv-steep.ubisoft.com,🇺🇲 美国节点
 DOMAIN,useast1-public-ubiservices.ubi.com,🇺🇲 美国节点
 DOMAIN,lens.l.google.com,🇺🇲 美国节点
-# > 个人分流
-DOMAIN,raw.githubusercontent.com,美国1年ss
-DOMAIN-KEYWORD,github,美国1年ss
-DOMAIN-SUFFIX,sub.store,美国1年ss
 # > Safari 防跳转
 DOMAIN,app-site-association.cdn-apple.com,REJECT
 # > 屏蔽HTTP3/QUIC协议
@@ -54,12 +50,9 @@ AND,((PROTOCOL,UDP), (DEST-PORT,443)),REJECT-NO-DROP
 DOMAIN-SUFFIX,gjfzpt.cn,REJECT
 # Boxjs 代理
 DOMAIN-KEYWORD,jsdelivr.net,🇺🇲 美国节点
-# 屏蔽YouTube的UDP
-AND,((PROTOCOL,UDP), (DOMAIN-SUFFIX,googlevideo.com)),REJECT-NO-DROP
 # 绕过App企业证书过期
 DOMAIN,ocsp.apple.com,Reject
-# iQZone 代理
-DOMAIN,uuu.glass,🚀 延迟最低
+
 # BT
 DOMAIN-SUFFIX,smtp,Direct
 DOMAIN-KEYWORD,aria2,Direct
@@ -92,12 +85,6 @@ DOMAIN-KEYWORD,target,🇺🇲 美国节点
 # >> bestbuy
 DOMAIN-KEYWORD,bestbuy,🇺🇲 美国节点
 DOMAIN,pisces.bbystatic.com,🇺🇲 美国节点
-# >> 贴吧净化
-RULE-SET,https://raw.githubusercontent.com/app2smile/rules/master/rule/tieba-ad.list,REJECT-DROP
-
-[URL Rewrite]
-# 将 google.cn 的请求重定向到 google.com
-^(http|https):\/\/(www.)?(g|google)\.cn https://www.google.com 307
 
 [Script]
 # > BoxJs
@@ -109,11 +96,8 @@ Rewrite: BoxJs = type=http-request,pattern=^https?:\/\/(.+\.)?boxjs\.(com|net),s
 # > 判断网络是否能够连接谷歌，如果不能则自动切换代理
 #proxy_auto_switch = type=event,event-name=network-changed,timeout=10,debug=1,script-path=https://raw.githubusercontent.com/shinyypig/Surge-Scripts/main/scripts/proxy_auto_switch.js
 
-# > 美团外卖去开屏广告 by blackmatrix7
-美团外卖去开屏广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/wmapi\.meituan\.com\/api\/v\d+\/loadInfo?,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/startup/startup.js
-
 # > 避免 Google 搜索可能出现的人机验证 by NobyDa
 Google_CAPTCHA.js = type=http-response,pattern=^https:\/\/www\.google\.com(\.[a-z]+|)\/search\?q=,requires-body=1,debug=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Google_CAPTCHA.js,max-size=0,timeout=10,ability=http-client-policy,argument=^(🇸🇬|🇭🇰)\s.*\d+$
 
 [MITM]
-hostname = %APPEND% g.cn, www.g.cn, google.cn, www.google.cn, boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net, mbd.baidu.com, boxer.baidu.com, wmapi.meituan.com, www.google.com*, api.revenuecat.com
+hostname = %APPEND% g.cn, www.g.cn, google.cn, www.google.cn, boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net, www.google.com*, api.revenuecat.com
