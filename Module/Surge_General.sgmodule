@@ -1,5 +1,5 @@
 #!name=lesong@𝐒𝐮𝐫𝐠𝐞𝐏𝐫𝐨 𝐒𝐜𝐫𝐢𝐩𝐭合集
-#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2023.08.13
+#!desc=𝐔𝐩𝐝𝐚𝐭𝐞: 2023.09.11
 # > 花样字体生成： https://qwerty.dev/fancy-font-generator/
 # > 机场转义𝐄𝐍𝐂𝐎𝐃𝐄： https://www.urlencoder.org
 
@@ -20,6 +20,30 @@ http-request ^https?:\/\/(?!d\.pcs).*(?<!map)\.baidu\.com header-replace-regex U
 https:\/\/api\.revenuecat\.com header-del x-revenuecat-etag
 
 [Rule]
+AND,((PROTOCOL,UDP), (DEST-PORT,443)),REJECT-NO-DROP
+
+# 阻止电报频繁请求
+AND,((PROCESS-NAME,Telegram), (OR,((IP-CIDR,0.0.0.0/8), (IP-CIDR,224.0.0.0/4)))),REJECT
+
+# External Resources Update
+AND,((DOMAIN,raw.githubusercontent.com), (DOMAIN-SUFFIX,github.io), (USER-AGENT,Surge/*)),Final,notification-text="♻️External Resources Update",notification-interval=3600
+# Blocking UDP Packets by Youtube and ins
+AND,((DOMAIN-SUFFIX,googlevideo.com), (DOMAIN-SUFFIX,gvt1.com), (DOMAIN-SUFFIX,cdninstagram.com), (PROTOCOL,UDP)),REJECT
+
+# > 防止应用循环请求
+IP-CIDR,0.0.0.0/32,REJECT,no-resolve,notification-text="( ゜- ゜)つロ 差点干翻自己~"
+
+# DEST-PORT 端口规则
+OR,((DEST-PORT,25), (DEST-PORT,110), (DEST-PORT,143), (DEST-PORT,465), (DEST-PORT,587)),DIRECT // 邮件服务默认端口
+AND,((OR,((DOMAIN,time-ios.apple.com), (DOMAIN,time.apple.com), (DOMAIN-SUFFIX,pool.ntp.org))), (DEST-PORT,123)),DIRECT // NTP服务默认端口
+
+# Safari 防跳转
+DOMAIN,app-site-association.cdn-apple.com,REJECT,notification-text="( ゜- ゜)つロ 跑、门已焊死~"
+
+# TestFlight 商店
+DOMAIN,beta.apple.com,Proxy
+DOMAIN,testflight.apple.com,Proxy
+
 # >> 顶级域名分流
 # 大陆顶级域
 # DOMAIN-SUFFIX,cn,Direct
@@ -42,10 +66,6 @@ DOMAIN-SUFFIX,us,🇺🇲 美国节点
 DOMAIN,lb-rdv-steep.ubisoft.com,🇺🇲 美国节点
 DOMAIN,useast1-public-ubiservices.ubi.com,🇺🇲 美国节点
 DOMAIN,lens.l.google.com,🇺🇲 美国节点
-# > Safari 防跳转
-DOMAIN,app-site-association.cdn-apple.com,REJECT
-# > 屏蔽HTTP3/QUIC协议
-AND,((PROTOCOL,UDP), (DEST-PORT,443)),REJECT-NO-DROP
 # > 拒绝国家反诈中心请求
 DOMAIN-SUFFIX,gjfzpt.cn,REJECT
 # Boxjs 代理
