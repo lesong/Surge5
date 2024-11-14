@@ -1,7 +1,7 @@
 /*
 脚本引用https://raw.githubusercontent.com/Keywos/rule/main/loon/tk.js
 */
-let keyus={台湾: "TW", 日本: "JP", 韩国: "KR", 泰国: "TH", 越南: "VN", 英国: "UK", 法国: "FR", 德国: "DE", 美国: "US", 巴西: "BR", 俄罗斯: "RU", 墨西哥: "MX", 土耳其: "TR", 西班牙: "ES", 阿根廷: "AR", 新加坡: "SG", 菲律宾: "PH", 马来西亚: "MY"},
+let keyus={日本: "JP"},
 lk = $persistentStore.read("JP"),loc = keyus[lk] || "KR",url = $request.url;
 // if(loc == "inkey"){
 //   inkeys = $persistentStore.read("手动输入地区代码[可选]");
